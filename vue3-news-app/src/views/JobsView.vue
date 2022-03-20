@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div>JobsView</div>
+    <!-- <div>JobsView</div>
     <div>
       <ul>
         <li v-for="(jobsItem, index) in state.jobs" :key="index">
@@ -11,14 +11,19 @@
           </p>
         </li>
       </ul>
-    </div>
+    </div> -->
+    <list-item></list-item>
   </div>
 </template>
 
 <script>
 import { defineComponent, onMounted, reactive } from "vue";
 import { useStore } from "vuex";
+import ListItem from "../components/ListItem.vue";
 export default defineComponent({
+  components: {
+    ListItem,
+  },
   setup() {
     const state = reactive({
       jobs: [],

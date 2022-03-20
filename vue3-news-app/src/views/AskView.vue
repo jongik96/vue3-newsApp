@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div>AskView</div>
+    <!-- <div>AskView</div>
     <div>
       <ul>
         <li v-for="(askItem, index) in state.ask" :key="index">
@@ -13,14 +13,19 @@
           </div>
         </li>
       </ul>
-    </div>
+    </div> -->
+    <list-item></list-item>
   </div>
 </template>
 
 <script>
 import { defineComponent, onMounted, reactive } from "vue";
 import { useStore } from "vuex";
+import ListItem from "../components/ListItem.vue";
 export default defineComponent({
+  components: {
+    ListItem,
+  },
   setup() {
     const state = reactive({
       ask: [],

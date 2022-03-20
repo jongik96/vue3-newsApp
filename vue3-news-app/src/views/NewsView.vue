@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div>NewsView</div>
+    <!-- <div>NewsView</div>
     <div>
       <ul>
         <li v-for="(newsItem, index) in state.news" :key="index">
@@ -13,15 +13,20 @@
           </div>
         </li>
       </ul>
-    </div>
+    </div> -->
+    <list-item></list-item>
   </div>
 </template>
 
 <script>
 import { defineComponent, onMounted, reactive } from "vue";
 import { useStore } from "vuex";
+import ListItem from "../components/ListItem.vue";
 
 export default defineComponent({
+  components: {
+    ListItem,
+  },
   setup() {
     const state = reactive({
       news: [],
