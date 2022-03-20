@@ -19,20 +19,21 @@
 
 <script>
 import { defineComponent, onMounted, reactive } from "vue";
-import { fetchNews } from "../api/index.js";
+import { useStore } from "vuex";
+
 export default defineComponent({
   setup() {
     const state = reactive({
       news: [],
     });
 
+    // vuex 사용하기 위해 호출해야함
+    const store = useStore();
+
+    // store-actions 의 api 실행
     onMounted(() => {
-      fetchNews()
-        .then((res) => {
-          console.log(res);
-          state.news = res.data;
-        })
-        .catch((err) => console.log(err));
+      store.dispatch("FETCH_NEWS");
+      state.news = store.state.news;
     });
 
     return { state };

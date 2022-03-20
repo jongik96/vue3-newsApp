@@ -19,20 +19,16 @@
 
 <script>
 import { defineComponent, onMounted, reactive } from "vue";
-import { fetchAsk } from "../api/index.js";
+import { useStore } from "vuex";
 export default defineComponent({
   setup() {
     const state = reactive({
       ask: [],
     });
-
+    const store = useStore();
     onMounted(() => {
-      fetchAsk()
-        .then((res) => {
-          console.log(res);
-          state.ask = res.data;
-        })
-        .catch((err) => console.log(err));
+      store.dispatch("FETCH_ASK");
+      state.ask = store.state.ask;
     });
 
     return { state };

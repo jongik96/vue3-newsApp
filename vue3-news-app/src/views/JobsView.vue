@@ -17,20 +17,16 @@
 
 <script>
 import { defineComponent, onMounted, reactive } from "vue";
-import { fetchJobs } from "../api/index.js";
+import { useStore } from "vuex";
 export default defineComponent({
   setup() {
     const state = reactive({
       jobs: [],
     });
-
+    const store = useStore();
     onMounted(() => {
-      fetchJobs()
-        .then((res) => {
-          console.log(res);
-          state.jobs = res.data;
-        })
-        .catch((err) => console.log(err));
+      store.dispatch("FETCH_JOBS");
+      state.jobs = store.state.jobs;
     });
 
     return { state };
