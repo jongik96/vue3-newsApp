@@ -8,6 +8,8 @@ export default createStore({
     news: [],
     ask: [],
     jobs: [],
+    user: {},
+    item: {},
   },
   getters,
   mutations,

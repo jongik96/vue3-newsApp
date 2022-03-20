@@ -1,4 +1,10 @@
-import { fetchNews, fetchAsk, fetchJobs } from "../api/index.js";
+import {
+  fetchNews,
+  fetchAsk,
+  fetchJobs,
+  fetchUser,
+  fetchItem,
+} from "../api/index.js";
 export default {
   FETCH_NEWS({ commit }) {
     return fetchNews().then((response) => commit("SET_NEWS", response.data));
@@ -8,5 +14,11 @@ export default {
   },
   FETCH_JOBS({ commit }) {
     return fetchJobs().then((response) => commit("SET_JOBS", response.data));
+  },
+  FETCH_USER({ commit }, userId) {
+    return fetchUser(userId).then((res) => commit("SET_USER", res.data));
+  },
+  FETCH_ITEM({ commit }, itemId) {
+    return fetchItem(itemId).then((res) => commit("SET_ITEM", res.data));
   },
 };
