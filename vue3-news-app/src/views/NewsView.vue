@@ -27,7 +27,7 @@ export default defineComponent({
   components: {
     ListItem,
   },
-  setup() {
+  setup(props, context) {
     const state = reactive({
       news: [],
     });
@@ -37,8 +37,10 @@ export default defineComponent({
 
     // store-actions 의 api 실행
     onMounted(() => {
+      context.emit("on:progress");
       store.dispatch("FETCH_NEWS");
-      state.news = store.state.news;
+      context.emit("off:progress");
+      //   state.news = store.state.news;
     });
 
     return { state };

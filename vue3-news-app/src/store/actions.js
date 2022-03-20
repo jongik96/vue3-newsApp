@@ -6,8 +6,15 @@ import {
   fetchItem,
 } from "../api/index.js";
 export default {
-  FETCH_NEWS({ commit }) {
-    return fetchNews().then((response) => commit("SET_NEWS", response.data));
+  // FETCH_NEWS({ commit }) {
+  //   return fetchNews().then((response) => commit("SET_NEWS", response.data));
+  // },
+  FETCH_NEWS(context) {
+    fetchNews()
+      .then((response) => {
+        context.commit("SET_NEWS", response.data);
+      })
+      .catch((err) => console.log(err));
   },
   FETCH_ASK({ commit }) {
     return fetchAsk().then((response) => commit("SET_ASK", response.data));

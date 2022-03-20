@@ -1,7 +1,12 @@
 <template>
   <div>
+    <progress-bar :loading="state.loading"></progress-bar>
     <ToolBar></ToolBar>
-    <router-view v-slot="{ Component }">
+    <router-view
+      @off:progress="offProgress"
+      @on:progress="onProgress"
+      v-slot="{ Component }"
+    >
       <transition name="fade">
         <component :is="Component" />
       </transition>
@@ -10,10 +15,28 @@
 </template>
 
 <script>
+import { reactive } from "vue";
 import ToolBar from "./components/ToolBar.vue";
+import ProgressBar from "./components/ProgressBar.vue";
 
 export default {
-  components: { ToolBar },
+  components: { ToolBar, ProgressBar },
+
+  setup() {
+    const state = reactive({
+      loading: false,
+    });
+
+    const onProgress = () => {
+      state.loading = true;
+    };
+
+    const offProgress = () => {
+      state.loading = false;
+    };
+
+    return { state, onProgress, offProgress };
+  },
 };
 </script>
 

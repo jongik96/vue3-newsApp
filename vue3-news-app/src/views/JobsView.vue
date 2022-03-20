@@ -24,14 +24,16 @@ export default defineComponent({
   components: {
     ListItem,
   },
-  setup() {
+  setup(props, context) {
     const state = reactive({
       jobs: [],
     });
     const store = useStore();
     onMounted(() => {
+      context.emit("on:progress");
       store.dispatch("FETCH_JOBS");
-      state.jobs = store.state.jobs;
+      context.emit("off:progress");
+      //   state.jobs = store.state.jobs;
     });
 
     return { state };

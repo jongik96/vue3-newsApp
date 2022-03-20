@@ -26,14 +26,16 @@ export default defineComponent({
   components: {
     ListItem,
   },
-  setup() {
+  setup(props, context) {
     const state = reactive({
       ask: [],
     });
     const store = useStore();
     onMounted(() => {
+      context.emit("on:progress");
       store.dispatch("FETCH_ASK");
-      state.ask = store.state.ask;
+      context.emit("off:progress");
+      //   state.ask = store.state.ask;
     });
 
     return { state };
