@@ -1,5 +1,4 @@
 import { createStore } from "vuex";
-import getters from "./getters.js";
 import mutations from "./mutations";
 import actions from "./actions.js";
 
@@ -11,7 +10,6 @@ export default createStore({
     user: {},
     item: {},
   },
-  getters,
   mutations,
   actions,
 });
