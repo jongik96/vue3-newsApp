@@ -4,33 +4,42 @@ import JobsView from "../views/JobsView.vue";
 import AskView from "../views/AskView.vue";
 import ItemView from "../views/ItemView.vue";
 import UserView from "../views/UserView.vue";
+import store from "../store";
 
 const routes = [
   {
     path: "/",
-    name: "Home",
-    component: NewsView,
+    redirect: "/news",
   },
   {
     path: "/news",
     name: "NewsView",
     component: NewsView,
+    beforeEnter: (to, from, next) => {
+      store.dispatch("FETCH_NEWS", to.name).then(() => {
+        next();
+      });
+    },
   },
-  // {
-  //   path: "/about",
-  //   name: "About",
-  //   component: () =>
-  //     import(/* webpackChunkName: "about" */ "../views/About.vue"),
-  // },
   {
     path: "/jobs",
     name: "JobsView",
     component: JobsView,
+    beforeEnter: (to, from, next) => {
+      store.dispatch("FETCH_JOBS", to.name).then(() => {
+        next();
+      });
+    },
   },
   {
     path: "/ask",
     name: "AskView",
     component: AskView,
+    beforeEnter: (to, from, next) => {
+      store.dispatch("FETCH_ASK", to.name).then(() => {
+        next();
+      });
+    },
   },
   {
     path: "/item/:id",
