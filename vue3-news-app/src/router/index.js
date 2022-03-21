@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
-import NewsView from "../views/NewsView.vue";
+// import NewsView from "../views/NewsView.vue";
 import JobsView from "../views/JobsView.vue";
 import AskView from "../views/AskView.vue";
 import ItemView from "../views/ItemView.vue";
@@ -14,7 +14,7 @@ const routes = [
   {
     path: "/news",
     name: "NewsView",
-    component: NewsView,
+    component: () => import("@/views/NewsView.vue"),
     beforeEnter: (to, from, next) => {
       store.dispatch("FETCH_NEWS", to.name).then(() => {
         next();

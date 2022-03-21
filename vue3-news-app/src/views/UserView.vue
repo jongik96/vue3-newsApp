@@ -27,6 +27,9 @@ export default defineComponent({
 
     onMounted(() => {
       const userId = route.params.id;
+      console.log("params : " + route.params);
+      console.log("name : " + route.name);
+      console.log("path : " + route.path);
       store.dispatch("FETCH_USER", userId);
     });
 
