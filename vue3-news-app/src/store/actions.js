@@ -19,8 +19,13 @@ export default {
   FETCH_ASK({ commit }) {
     return fetchAsk().then((response) => commit("SET_ASK", response.data));
   },
-  FETCH_JOBS({ commit }) {
-    return fetchJobs().then((response) => commit("SET_JOBS", response.data));
+
+  // async-await
+  async FETCH_JOBS({ commit }) {
+    const response = await fetchJobs();
+    commit("SET", response.data);
+    return response;
+    // return fetchJobs().then((response) => commit("SET_JOBS", response.data));
   },
   FETCH_USER({ commit }, userId) {
     return fetchUser(userId).then((res) => commit("SET_USER", res.data));
