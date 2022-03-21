@@ -23,7 +23,7 @@ export default {
   // async-await
   async FETCH_JOBS({ commit }) {
     const response = await fetchJobs();
-    commit("SET", response.data);
+    commit("SET_JOBS", response.data);
     return response;
     // return fetchJobs().then((response) => commit("SET_JOBS", response.data));
   },
