@@ -9,19 +9,12 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import ToolBar from "./components/ToolBar.vue";
-
-export default {
-  components: { ToolBar },
-
-  setup() {
-    return {};
-  },
-};
 </script>
 
 <style>
+/* 라우터 트랜지션 */
 /* we will explain what these classes do next! */
 .fade-enter-active,
 .fade-leave-active {

@@ -4,28 +4,14 @@
   </div>
 </template>
 
-<script>
-import { defineComponent, onMounted, reactive } from "vue";
-// import { useStore } from "vuex";
+<script setup>
+// import { defineComponent } from "vue";
 import ListItem from "../components/ListItem.vue";
-// import bus from "../utils/bus.js";
-export default defineComponent({
-  components: {
-    ListItem,
-  },
-  setup() {
-    const state = reactive({
-      jobs: [],
-    });
-    // const store = useStore();
-    onMounted(() => {
-      // store.dispatch("FETCH_JOBS");
-      //   state.jobs = store.state.jobs;
-    });
-
-    return { state };
-  },
-});
+// export default defineComponent({
+//   components: {
+//     ListItem,
+//   },
+// });
 </script>
 
 <style></style>

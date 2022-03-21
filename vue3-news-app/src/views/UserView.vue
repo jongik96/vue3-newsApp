@@ -12,31 +12,43 @@
   </div>
 </template>
 
-<script>
-import { defineComponent, onMounted, computed } from "vue";
+<script setup>
+import { onMounted, computed } from "vue";
 import UserProfile from "../components/UserProfile.vue";
 import { useStore } from "vuex";
 import { useRoute } from "vue-router";
-export default defineComponent({
-  components: {
-    UserProfile,
-  },
-  setup() {
-    const route = useRoute();
-    const store = useStore();
 
-    onMounted(() => {
-      const userId = route.params.id;
-      store.dispatch("FETCH_USER", userId);
-    });
+const route = useRoute();
+const store = useStore();
 
-    const fetchedUser = computed(() => {
-      return store.state.user;
-    });
-
-    return { fetchedUser };
-  },
+onMounted(() => {
+  const userId = route.params.id;
+  store.dispatch("FETCH_USER", userId);
 });
+
+const fetchedUser = computed(() => {
+  return store.state.user;
+});
+// export default defineComponent({
+//   components: {
+//     UserProfile,
+//   },
+//   setup() {
+//     const route = useRoute();
+//     const store = useStore();
+
+//     onMounted(() => {
+//       const userId = route.params.id;
+//       store.dispatch("FETCH_USER", userId);
+//     });
+
+//     const fetchedUser = computed(() => {
+//       return store.state.user;
+//     });
+
+//     return { fetchedUser };
+//   },
+// });
 </script>
 
 <style></style>

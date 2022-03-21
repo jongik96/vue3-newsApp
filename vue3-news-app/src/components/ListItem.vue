@@ -35,31 +35,48 @@
   </ul>
 </template>
 
-<script>
+<script setup>
 import { useRoute } from "vue-router";
-import { defineComponent, computed } from "vue";
+import { computed } from "vue";
 import { useStore } from "vuex";
-export default defineComponent({
-  setup() {
-    const store = useStore();
-    const route = useRoute();
-    // console.log("경로 : " + route.path);
-    const listItems = computed(() => {
-      if (route.path === "/news") {
-        return store.state.news;
-      } else if (route.path === "/ask") {
-        return store.state.ask;
-      } else if (route.path === "/jobs") {
-        return store.state.jobs;
-      }
-      // eslint return 에러 방지용
-      else {
-        return 0;
-      }
-    });
-    return { listItems };
-  },
+
+const store = useStore();
+const route = useRoute();
+// console.log("경로 : " + route.path);
+const listItems = computed(() => {
+  if (route.path === "/news") {
+    return store.state.news;
+  } else if (route.path === "/ask") {
+    return store.state.ask;
+  } else if (route.path === "/jobs") {
+    return store.state.jobs;
+  }
+  // eslint return 에러 방지용
+  else {
+    return 0;
+  }
 });
+// export default defineComponent({
+//   setup() {
+//     const store = useStore();
+//     const route = useRoute();
+//     // console.log("경로 : " + route.path);
+//     const listItems = computed(() => {
+//       if (route.path === "/news") {
+//         return store.state.news;
+//       } else if (route.path === "/ask") {
+//         return store.state.ask;
+//       } else if (route.path === "/jobs") {
+//         return store.state.jobs;
+//       }
+//       // eslint return 에러 방지용
+//       else {
+//         return 0;
+//       }
+//     });
+//     return { listItems };
+//   },
+// });
 </script>
 
 <style scoped>
